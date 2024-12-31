@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.unique-heading {
+  /* font-family: 'Great Vibes', cursive; */
+  color: #4c51bf; /* Custom Indigo color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* position: relative; */
+  overflow: hidden;
+  transform-origin: bottom;
+}

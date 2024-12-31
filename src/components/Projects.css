@@ -1,0 +1,55 @@
+/* Projects section background */
+#projects {
+  background: linear-gradient(145deg, #f9f9f9, #ffffff);
+}
+
+/* Project Card Styling */
+.project-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover Effects for Links */
+.project-card a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #3b82f6; /* Initial Blue Color */
+  transition: color 0.3s ease;
+}
+
+.project-card a:hover {
+  color: #2563eb; /* Darker Blue */
+}
+
+/* Heading Styling */
+#projects h2 {
+  font-size: 48px;
+  color: #5e4f0e;
+}
+
+/* Responsive Grid Layout */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
