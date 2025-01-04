@@ -66,6 +66,15 @@ const Projects = () => {
             >
               Demo video
             </a>
+            <br />
+            <a
+              href="https://socialhub-frontend.vercel.app/register"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-500 hover:text-green-700 text-sm font-medium"
+            >
+              Visit site
+            </a>
           </div>
 
           {/* Project 2 */}
