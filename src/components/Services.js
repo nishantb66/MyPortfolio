@@ -50,7 +50,10 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-8 sm:py-12 md:py-16 bg-white">
+    <section
+      id="services"
+      className="pt-20 sm:pt-24 md:pt-28 py-8 sm:py-12 md:py-16 bg-white"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">

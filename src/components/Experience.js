@@ -38,7 +38,10 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-8 sm:py-12 md:py-16 bg-white">
+    <section
+      id="experience"
+      className="pt-20 sm:pt-24 md:pt-28 py-8 sm:py-12 md:py-16 bg-white"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">
