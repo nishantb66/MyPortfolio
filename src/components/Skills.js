@@ -1,78 +1,116 @@
 import React, { useEffect, useState } from "react";
-import "./Skills.css"; // Import custom CSS for unique font and animation
+import { FaCode, FaDatabase, FaMobile, FaTools } from "react-icons/fa";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const section = document.getElementById("skills");
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (section) observer.observe(section);
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      icon: <FaCode />,
+      skills: [
+        { name: "JavaScript", level: 90 },
+        { name: "ReactJS", level: 80 },
+        { name: "NestJS", level: 70 },
+        { name: "Tailwind CSS", level: 88 },
+      ],
+    },
+    {
+      title: "Backend Development",
+      icon: <FaDatabase />,
+      skills: [
+        { name: "NodeJS", level: 82 },
+        { name: "ExpressJS", level: 80 },
+        { name: "MongoDB", level: 75 },
+        { name: "SQL", level: 78 },
+      ],
+    },
+    {
+      title: "Programming Languages",
+      icon: <FaTools />,
+      skills: [
+        { name: "Python", level: 85 },
+        { name: "Java", level: 80 },
+        { name: "C++", level: 75 },
+      ],
+    },
+    {
+      title: "Frameworks & Tools",
+      icon: <FaMobile />,
+      skills: [
+        { name: "Django", level: 70 },
+        { name: "Flask", level: 75 },
+        { name: "Kotlin", level: 65 },
+      ],
+    },
+  ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    const section = document.getElementById("skills");
+    if (section) observer.observe(section);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       id="skills"
-      className="relative p-8 md:p-16 bg-gradient-to-r from-indigo-50 to-indigo-100 text-gray-900 min-h-screen overflow-hidden"
+      className="py-20 bg-gradient-to-b from-gray-50 to-gray-100"
     >
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-gradient-to-br from-purple-300 to-pink-400 rounded-full blur-[80px] md:blur-[120px] opacity-40 animate-pulse"></div>
-      </div>
-
-      <div className="relative container mx-auto max-w-6xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
-          className={`unique-heading text-3xl sm:text-4xl md:text-6xl font-extrabold mb-8 sm:mb-12 md:mb-20 text-center transition-transform duration-1000 ease-out ${
-            isVisible
-              ? "scale-100 translate-y-0 opacity-100"
-              : "scale-75 translate-y-10 opacity-0"
+          className={`text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 transform transition-all duration-1000 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          My Technical Skills
+          Technical Expertise
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
-          {[
-            "JavaScript",
-            "ReactJS",
-            "ExpressJS",
-            "NodeJS",
-            "Tailwind CSS",
-            "MongoDB",
-            "SQL",
-            "Java Programming",
-            "C++ Programming",
-            "Python",
-            "Flask",
-            "Django",
-            "Kotlin Basics",
-          ].map((skill, index) => (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillCategories.map((category, idx) => (
             <div
-              key={index}
-              className={`${
+              key={idx}
+              className={`bg-white rounded-xl shadow-lg p-6 transform transition-all duration-700 delay-${
+                idx * 200
+              } ${
                 isVisible
-                  ? "scale-100 opacity-100 translate-y-0 shadow-xl"
-                  : "scale-75 opacity-0 translate-y-10"
-              } bg-white bg-opacity-90 text-indigo-800 text-sm sm:text-lg md:text-xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full transform transition-all duration-[1000ms] ease-in-out delay-[${
-                index * 100
-              }ms] hover:scale-110 hover:shadow-2xl`}
-              style={{
-                boxShadow: isVisible
-                  ? "0 10px 30px rgba(0, 0, 0, 0.2)"
-                  : "0 5px 15px rgba(0, 0, 0, 0.1)",
-              }}
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
             >
-              {skill}
+              <div className="flex items-center mb-6">
+                <span className="text-2xl text-indigo-600 mr-3">
+                  {category.icon}
+                </span>
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {category.title}
+                </h3>
+              </div>
+
+              <div className="space-y-4">
+                {category.skills.map((skill, skillIdx) => (
+                  <div key={skillIdx} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-700">{skill.name}</span>
+                      <span className="text-gray-500 text-sm">
+                        {skill.level}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-indigo-600 h-2 rounded-full transition-all duration-1000"
+                        style={{
+                          width: isVisible ? `${skill.level}%` : "0%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

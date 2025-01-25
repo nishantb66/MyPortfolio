@@ -1,135 +1,122 @@
 import React, { useEffect, useState } from "react";
+import {
+  FaCode,
+  FaPalette,
+  FaChartBar,
+  FaMobile,
+  FaDatabase,
+  FaCloud,
+} from "react-icons/fa";
 
 const Services = () => {
-  const [visibleServices, setVisibleServices] = useState([]);
+  const [visibleSections, setVisibleSections] = useState([]);
+
+  const services = [
+    {
+      icon: <FaCode />,
+      title: "Web Development",
+      description:
+        "Full-stack development with modern frameworks and technologies",
+      tags: ["React", "Node.js", "MongoDB"],
+    },
+    {
+      icon: <FaPalette />,
+      title: "UI/UX Design",
+      description: "Creating intuitive and engaging user experiences",
+      tags: ["Figma", "Adobe XD", "Prototyping"],
+    },
+    {
+      icon: <FaChartBar />,
+      title: "Data Analytics",
+      description: "Data-driven insights and machine learning solutions",
+      tags: ["Python", "TensorFlow", "Data Visualization"],
+    },
+    {
+      icon: <FaMobile />,
+      title: "Mobile Development",
+      description: "Cross-platform mobile applications",
+      tags: ["React Native", "Flutter", "Native Apps"],
+    },
+    {
+      icon: <FaDatabase />,
+      title: "Database Design",
+      description: "Scalable and efficient database architectures",
+      tags: ["SQL", "NoSQL", "Data Modeling"],
+    },
+    {
+      icon: <FaCloud />,
+      title: "Cloud Solutions",
+      description: "Cloud infrastructure and deployment",
+      tags: ["AWS", "Azure", "DevOps"],
+    },
+  ];
 
   useEffect(() => {
-    const sections = document.querySelectorAll(".service-card");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleServices((prevVisibleServices) => [
-              ...prevVisibleServices,
-              entry.target.dataset.index,
-            ]);
-            observer.unobserve(entry.target);
+            setVisibleSections((prev) => [...prev, entry.target.id]);
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
-    };
+    document
+      .querySelectorAll(".service-card")
+      .forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
       id="services"
-      className="relative p-8 md:p-16 bg-gradient-to-r from-indigo-50 to-indigo-100 text-gray-900 min-h-screen overflow-hidden"
+      className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden"
     >
-      {/* Subtle Background Patterns */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        <div className="w-72 h-72 md:w-96 md:h-96 bg-gradient-to-tr from-indigo-200 to-purple-300 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-      </div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
-      <div className="relative container mx-auto max-w-6xl">
-        <h2
-          className={`text-4xl md:text-6xl font-extrabold mb-12 md:mb-20 text-center text-indigo-800 transition-transform duration-1000 ease-out ${
-            visibleServices.length > 0
-              ? "translate-x-0 opacity-100"
-              : "-translate-x-full opacity-0"
-          }`}
-        >
-          Services I Offer
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
-          {[
-            {
-              title: "Development",
-              description:
-                "Building responsive and modern applications with the latest technologies.",
-              icon: "🌐",
-            },
-            {
-              title: "UI/UX Design",
-              description:
-                "Creating user-friendly and visually appealing designs for a seamless experience.",
-              icon: "🎨",
-            },
-            {
-              title: "Data Science/Analysis",
-              description:
-                "Providing solutions and insights on data, modeling ML solutions and Natural Language Processing.",
-              icon: "💡",
-            },
-          ].map((service, index) => (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Professional Services
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Delivering exceptional solutions with cutting-edge technology
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
             <div
               key={index}
-              data-index={index}
-              className={`service-card ${
-                visibleServices.includes(index.toString())
-                  ? "scale-105 translate-y-0 opacity-100 shadow-xl"
-                  : "scale-90 translate-y-12 opacity-0"
-              } bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg p-6 md:p-10 rounded-xl transform transition-all duration-[1200ms] ease-in-out delay-[${
-                index * 300
-              }ms] hover:scale-110 hover:shadow-2xl`}
-              style={{
-                boxShadow: visibleServices.includes(index.toString())
-                  ? "0 10px 30px rgba(0, 0, 0, 0.2)"
-                  : "0 5px 15px rgba(0, 0, 0, 0.1)",
-              }}
+              id={`service-${index}`}
+              className={`service-card backdrop-blur-lg bg-white/90 rounded-xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                visibleSections.includes(`service-${index}`)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
             >
-              {/* Icon */}
-              <div
-                className={`text-4xl md:text-5xl mb-4 md:mb-6 transition-all ${
-                  visibleServices.includes(index.toString())
-                    ? "text-indigo-600 rotate-0"
-                    : "text-indigo-400 -rotate-12"
-                } transform duration-1000 ease-out`}
-              >
+              <div className="text-3xl text-indigo-600 mb-4">
                 {service.icon}
               </div>
-
-              {/* Title */}
-              <h3
-                className={`${
-                  visibleServices.includes(index.toString())
-                    ? "text-2xl md:text-3xl"
-                    : "text-xl"
-                } font-bold text-indigo-800 transition-all duration-1000`}
-              >
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {service.title}
               </h3>
+              <p className="text-gray-600 mb-4">{service.description}</p>
 
-              {/* Description */}
-              <p
-                className={`mt-2 md:mt-4 ${
-                  visibleServices.includes(index.toString())
-                    ? "text-gray-800"
-                    : "text-gray-500"
-                } transition-colors duration-1000`}
-              >
-                {service.description}
-              </p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {service.tags.map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-              {/* Gradient Accent Line */}
-              <div
-                className={`mt-4 md:mt-6 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full ${
-                  visibleServices.includes(index.toString())
-                    ? "scale-x-100"
-                    : "scale-x-0"
-                } transition-transform duration-[1200ms] ease-out`}
-                style={{ transformOrigin: "left" }}
-              ></div>
+              <div className="mt-6 h-1 w-full bg-gradient-to-r from-indigo-500 to-purple-500 transform origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></div>
             </div>
           ))}
         </div>
