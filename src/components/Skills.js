@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaCode, FaDatabase, FaMobile, FaTools } from "react-icons/fa";
 
 const Skills = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   const skillCategories = [
     {
       title: "Frontend Development",
@@ -29,9 +27,9 @@ const Skills = () => {
       title: "Programming Languages",
       icon: <FaTools />,
       skills: [
-        { name: "Python", level: 85 },
-        { name: "Java", level: 80 },
-        { name: "C++", level: 75 },
+        { name: "Python", level: 80 },
+        { name: "Java", level: 90 },
+        { name: "C++", level: 80 },
       ],
     },
     {
@@ -40,53 +38,34 @@ const Skills = () => {
       skills: [
         { name: "Django", level: 70 },
         { name: "Flask", level: 75 },
-        { name: "Kotlin", level: 65 },
+        { name: "Kotlin", level: 50 },
       ],
     },
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById("skills");
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="skills"
-      className="py-20 bg-gradient-to-b from-gray-50 to-gray-100"
-    >
+    <section id="skills" className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-          className={`text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 transform transition-all duration-1000 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          Technical Expertise
-        </h2>
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Technical <span className="text-green-600">Expertise</span>
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
-              className={`bg-white rounded-xl shadow-lg p-6 transform transition-all duration-700 delay-${
-                idx * 200
-              } ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-10 opacity-0"
-              }`}
+              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
+                       border border-green-100"
             >
               <div className="flex items-center mb-6">
-                <span className="text-2xl text-indigo-600 mr-3">
+                <span className="text-2xl sm:text-3xl text-green-600 mr-3">
                   {category.icon}
                 </span>
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800">
                   {category.title}
                 </h3>
               </div>
@@ -95,17 +74,17 @@ const Skills = () => {
                 {category.skills.map((skill, skillIdx) => (
                   <div key={skillIdx} className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">{skill.name}</span>
-                      <span className="text-gray-500 text-sm">
+                      <span className="text-gray-700 font-medium text-sm sm:text-base">
+                        {skill.name}
+                      </span>
+                      <span className="text-green-600 text-sm font-medium">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full h-2 bg-green-50 rounded-full">
                       <div
-                        className="bg-indigo-600 h-2 rounded-full transition-all duration-1000"
-                        style={{
-                          width: isVisible ? `${skill.level}%` : "0%",
-                        }}
+                        className="h-full bg-green-600 rounded-full"
+                        style={{ width: `${skill.level}%` }}
                       />
                     </div>
                   </div>

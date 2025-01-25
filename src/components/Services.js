@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   FaCode,
   FaPalette,
@@ -9,8 +9,6 @@ import {
 } from "react-icons/fa";
 
 const Services = () => {
-  const [visibleSections, setVisibleSections] = useState([]);
-
   const services = [
     {
       icon: <FaCode />,
@@ -51,72 +49,52 @@ const Services = () => {
     },
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleSections((prev) => [...prev, entry.target.id]);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document
-      .querySelectorAll(".service-card")
-      .forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="services"
-      className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Professional Services
+    <section id="services" className="py-8 sm:py-12 md:py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Professional <span className="text-green-600">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Delivering exceptional solutions with cutting-edge technology
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              id={`service-${index}`}
-              className={`service-card backdrop-blur-lg bg-white/90 rounded-xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-                visibleSections.includes(`service-${index}`)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
+              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
+                       border border-green-100"
             >
-              <div className="text-3xl text-indigo-600 mb-4">
+              {/* Service Icon */}
+              <div className="text-2xl sm:text-3xl text-green-600 mb-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+
+              {/* Service Content */}
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">
                 {service.title}
               </h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
+              <p className="text-gray-600 text-sm sm:text-base mb-6">
+                {service.description}
+              </p>
 
-              <div className="flex flex-wrap gap-2 mt-4">
+              {/* Technology Tags */}
+              <div className="flex flex-wrap gap-2">
                 {service.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm"
+                    className="px-3 py-1 text-xs sm:text-sm bg-green-50 
+                             text-green-700 rounded-md font-medium"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-
-              <div className="mt-6 h-1 w-full bg-gradient-to-r from-indigo-500 to-purple-500 transform origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></div>
             </div>
           ))}
         </div>

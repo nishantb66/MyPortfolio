@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
-
+import React from "react";
 const Experience = () => {
-  const [visibleItems, setVisibleItems] = useState(new Set());
-
   const experiences = [
     {
       id: 1,
@@ -40,99 +37,78 @@ const Experience = () => {
     },
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleItems((prev) => new Set([...prev, entry.target.id]));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  return (
+    <section id="experience" className="py-8 sm:py-12 md:py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">
+          Professional <span className="text-green-600">Journey</span>
+        </h2>
 
-    document
-      .querySelectorAll(".experience-card")
-      .forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-green-200"></div>
 
-   return (
-     <section
-       id="experience"
-       className="py-20 bg-gradient-to-br from-gray-50 to-gray-100"
-     >
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-         <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-16">
-           Professional Journey
-         </h2>
+          {/* Experience Cards */}
+          {experiences.map((exp, index) => (
+            <div
+              key={exp.id}
+              className={`relative flex flex-col md:flex-row gap-6 sm:gap-8 mb-8 sm:mb-12 ${
+                index % 2 === 0 ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Timeline dot */}
+              <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3">
+                <div className="w-full h-full rounded-full bg-green-500"></div>
+              </div>
 
-         <div className="relative">
-           {/* Timeline line */}
-           <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-300 via-indigo-400 to-indigo-500"></div>
+              {/* Content card */}
+              <div
+                className="ml-12 md:ml-0 md:w-5/12 bg-white rounded-xl p-6 sm:p-8 
+                            shadow-md border border-green-100"
+              >
+                {/* Role & Company */}
+                <div className="flex items-center gap-3 text-green-600 mb-4">
+                  <FaBriefcase className="text-xl" />
+                  <h3 className="text-lg font-bold">{exp.role}</h3>
+                </div>
+                <p className="text-gray-700 font-medium mb-3">{exp.company}</p>
 
-           {experiences.map((exp, index) => (
-             <div
-               key={exp.id}
-               id={`exp-${exp.id}`}
-               className={`experience-card relative flex flex-col md:flex-row gap-8 mb-12 ${
-                 index % 2 === 0 ? "md:flex-row-reverse" : ""
-               }`}
-             >
-               {/* Timeline dot */}
-               <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4">
-                 <div className="w-full h-full rounded-full bg-indigo-400 animate-ping opacity-75"></div>
-                 <div className="absolute inset-0 rounded-full bg-indigo-500"></div>
-               </div>
+                {/* Period & Location */}
+                <div className="text-gray-600 mb-4 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <FaCalendar className="text-green-500" />
+                    <span className="text-sm">{exp.period}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-green-500" />
+                    <span className="text-sm">{exp.location}</span>
+                  </div>
+                </div>
 
-               {/* Content card */}
-               <div
-                 className={`ml-8 md:ml-0 md:w-1/2 p-6 bg-white rounded-lg shadow-lg transform transition-all duration-700 hover:shadow-xl ${
-                   visibleItems.has(`exp-${exp.id}`)
-                     ? "translate-y-0 opacity-100"
-                     : "translate-y-20 opacity-0"
-                 }`}
-               >
-                 <div className="flex items-center gap-3 text-indigo-600 mb-2">
-                   <FaBriefcase className="text-xl" />
-                   <h3 className="text-xl font-semibold">{exp.role}</h3>
-                 </div>
+                {/* Description */}
+                <p className="text-gray-600 mb-6 text-sm">{exp.description}</p>
 
-                 <p className="text-gray-600 font-medium mb-2">{exp.company}</p>
-
-                 <div className="text-gray-500 mb-4">
-                   <div className="flex items-center gap-2 mb-1">
-                     <FaCalendar className="text-indigo-400" />
-                     <span>{exp.period}</span>
-                   </div>
-                   <div className="flex items-center gap-2">
-                     <FaMapMarkerAlt className="text-indigo-400" />
-                     <span>{exp.location}</span>
-                   </div>
-                 </div>
-
-                 <p className="text-gray-600 mb-4 leading-relaxed">
-                   {exp.description}
-                 </p>
-
-                 <div className="flex flex-wrap gap-2">
-                   {exp.skills.map((skill, i) => (
-                     <span
-                       key={i}
-                       className="px-3 py-1 text-sm bg-indigo-50 text-indigo-600 rounded-full font-medium"
-                     >
-                       {skill}
-                     </span>
-                   ))}
-                 </div>
-               </div>
-             </div>
-           ))}
-         </div>
-       </div>
-     </section>
-   );
+                {/* Skills */}
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 text-xs bg-green-50 text-green-700 
+                               rounded-md font-medium border border-green-100"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Experience;

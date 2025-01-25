@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaGithub, FaPlay, FaExternalLinkAlt } from "react-icons/fa";
 
 const Projects = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   const projects = [
     {
       id: 1,
@@ -60,102 +58,92 @@ const Projects = () => {
     // Add other projects similarly...
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById("projects");
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2
-            className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 transform transition-all duration-1000 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            Featured Projects
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Featured <span className="text-green-600">Projects</span>
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="mt-3 text-base sm:text-lg text-gray-600">
             Exploring the intersection of design and technology through
             innovative solutions
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
+                       border border-green-100"
             >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    {project.title}
-                    {project.isNew && (
-                      <span className="ml-2 px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
-                        New
-                      </span>
-                    )}
-                  </h3>
-                </div>
-
-                <p className="text-gray-600 mb-6">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag, index) => (
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800">
+                  {project.title}
+                  {project.isNew && (
                     <span
-                      key={index}
-                      className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
+                      className="ml-2 px-3 py-1 text-xs bg-green-50 
+                                   text-green-700 rounded-full"
                     >
-                      {tag}
+                      New
                     </span>
-                  ))}
-                </div>
+                  )}
+                </h3>
+              </div>
 
-                <div className="flex items-center gap-4 pt-4 border-t">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      <FaGithub className="mr-2" />
-                      Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      <FaPlay className="mr-2" />
-                      Demo
-                    </a>
-                  )}
-                  {project.liveLink && (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-indigo-600 hover:text-indigo-700 transition-colors ml-auto"
-                    >
-                      <FaExternalLinkAlt className="mr-2" />
-                      Live Site
-                    </a>
-                  )}
-                </div>
+              <p className="text-gray-600 mb-6 text-sm sm:text-base">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-xs sm:text-sm bg-green-50 
+                             text-green-700 rounded-lg font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-4 pt-4 border-t border-green-100">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-600"
+                  >
+                    <FaGithub className="mr-2" />
+                    <span className="text-sm font-medium">Code</span>
+                  </a>
+                )}
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-600"
+                  >
+                    <FaPlay className="mr-2" />
+                    <span className="text-sm font-medium">Demo</span>
+                  </a>
+                )}
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-green-600 ml-auto"
+                  >
+                    <span className="text-sm font-medium">Live Site</span>
+                    <FaExternalLinkAlt className="ml-2" />
+                  </a>
+                )}
               </div>
             </div>
           ))}

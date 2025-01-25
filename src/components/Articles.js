@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FaBook, FaClock, FaEye } from "react-icons/fa";
 
 const Articles = () => {
-  const [visibleArticles, setVisibleArticles] = useState(new Set());
-
   const articles = [
     {
       id: 1,
@@ -41,82 +39,66 @@ const Articles = () => {
     },
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleArticles((prev) => new Set([...prev, entry.target.id]));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document
-      .querySelectorAll(".article-card")
-      .forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="articles"
-      className="py-20 bg-gradient-to-br from-gray-50 to-gray-100"
-    >
+    <section id="articles" className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-16">
-          Featured Articles
-        </h2>
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Featured <span className="text-green-600">Articles</span>
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Articles Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {articles.map((article) => (
             <div
               key={article.id}
-              id={`article-${article.id}`}
-              className={`article-card bg-white rounded-xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-xl hover:-translate-y-1 ${
-                visibleArticles.has(`article-${article.id}`)
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-20 opacity-0"
-              }`}
+              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
+                       border border-green-100"
             >
+              {/* Article Metadata */}
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center text-gray-600">
-                  <FaClock className="mr-2 text-indigo-500" />
-                  <span>{article.readTime}</span>
+                  <FaClock className="mr-2 text-green-500" />
+                  <span className="text-sm">{article.readTime}</span>
                 </div>
                 <div className="flex items-center text-gray-600">
-                  <FaEye className="mr-2 text-indigo-500" />
-                  <span>{article.views} views</span>
+                  <FaEye className="mr-2 text-green-500" />
+                  <span className="text-sm">{article.views} views</span>
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
+              {/* Title & Description */}
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">
                 {article.title}
               </h3>
-              <p className="text-gray-600 mb-4 line-clamp-3">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base line-clamp-3">
                 {article.description}
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-4">
                 {article.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 text-sm bg-indigo-50 text-indigo-600 rounded-full font-medium"
+                    className="px-3 py-1 text-xs bg-green-50 text-green-700 
+                             rounded-md font-medium border border-green-100"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
+              {/* Read Link */}
               <a
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium transition-colors"
+                className="inline-flex items-center text-green-600 font-medium"
               >
                 <FaBook className="mr-2" />
-                Read on Medium
+                <span>Read on Medium</span>
               </a>
             </div>
           ))}
