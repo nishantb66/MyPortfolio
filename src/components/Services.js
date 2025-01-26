@@ -52,47 +52,51 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="pt-20 sm:pt-24 md:pt-28 py-8 sm:py-12 md:py-16 bg-white"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
-            Professional <span className="text-green-600">Services</span>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h4 className="text-green-600 font-semibold mb-2">What I Offer</h4>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Professional Services
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600">
             Delivering exceptional solutions with cutting-edge technology
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
-                       border border-green-100"
+              className="group bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] 
+                       border-2 border-transparent hover:border-green-50"
             >
               {/* Service Icon */}
-              <div className="text-2xl sm:text-3xl text-green-600 mb-4">
-                {service.icon}
+              <div
+                className="inline-flex items-center justify-center w-14 h-14 
+                            rounded-xl bg-green-50 text-green-600 mb-6"
+              >
+                <span className="text-2xl">{service.icon}</span>
               </div>
 
               {/* Service Content */}
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-sm sm:text-base mb-6">
+              <p className="text-gray-600 mb-8 leading-relaxed">
                 {service.description}
               </p>
 
               {/* Technology Tags */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {service.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className="px-3 py-1 text-xs sm:text-sm bg-green-50 
-                             text-green-700 rounded-md font-medium"
+                    className="px-4 py-1.5 text-sm bg-gray-50 text-gray-700 
+                             rounded-lg font-medium"
                   >
                     {tag}
                   </span>

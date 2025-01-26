@@ -5,75 +5,79 @@ const About = () => {
   return (
     <section
       id="about"
-      className="pt-20 sm:pt-24 md:pt-28 py-8 sm:py-12 md:py-16 bg-white"
+      className="py-24 bg-gradient-to-b from-white to-gray-50"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Image Column */}
-          <div className="w-full sm:w-3/4 lg:w-2/5 max-w-md mx-auto lg:mx-0">
-            <div className="relative bg-green-50 rounded-2xl p-3">
-              <img
-                src={Mypic}
-                alt="Nishant Baruah"
-                className="w-full rounded-xl shadow-md"
-              />
+          <div className="w-full lg:w-2/5">
+            <div className="relative">
+              <div className="absolute inset-0 bg-green-100 rounded-[2.5rem] transform rotate-6"></div>
+              <div className="relative bg-white p-4 rounded-[2rem] shadow-xl">
+                <img
+                  src={Mypic}
+                  alt="Nishant Baruah"
+                  className="w-full h-[500px] object-cover rounded-[1.5rem]"
+                />
+              </div>
             </div>
           </div>
 
           {/* Content Column */}
-          <div className="w-full lg:w-3/5 text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
-              About <span className="text-green-600">Me</span>
-            </h2>
+          <div className="w-full lg:w-3/5">
+            <div className="max-w-xl">
+              <h4 className="text-green-600 font-semibold mb-2">About Me</h4>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                Crafting Digital Excellence with Purpose
+              </h2>
 
-            <div className="text-gray-600 mb-8 space-y-4">
-              <p className="text-base sm:text-lg">
-                Hello! I'm a Full Stack Developer and Data Analyst passionate
-                about building digital solutions that make a difference. I
-                specialize in creating modern, responsive applications that
-                combine aesthetic design with robust functionality.
-              </p>
-              <p className="text-base sm:text-lg">
-                With expertise in both frontend and backend development, I enjoy
-                tackling complex problems and turning them into simple,
-                beautiful solutions. My approach combines technical excellence
-                with creative problem-solving.
-              </p>
-            </div>
+              <div className="space-y-6 text-gray-600 mb-12">
+                <p className="text-lg leading-relaxed">
+                  Hello! I'm a Full Stack Developer and Data Analyst passionate
+                  about building digital solutions that make a difference. I
+                  specialize in creating modern, responsive applications that
+                  combine aesthetic design with robust functionality.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  With expertise in both frontend and backend development, I
+                  enjoy tackling complex problems and turning them into simple,
+                  beautiful solutions. My approach combines technical excellence
+                  with creative problem-solving.
+                </p>
+              </div>
 
-            {/* Skills Tags */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
-              {[
-                "Full Stack Development",
-                "Data Analysis",
-                "AI solutions",
-                "UI/UX Design",
-                "Problem Solving",
-                "Team Collaboration",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-4 py-2 bg-green-50 text-green-700 rounded-lg 
-                           text-sm font-medium border border-green-100"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+              {/* Skills Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+                {[
+                  "Full Stack Development",
+                  "Data Analysis",
+                  "AI Solutions",
+                  "UI/UX Design",
+                  "Problem Solving",
+                  "Team Collaboration",
+                ].map((skill) => (
+                  <div
+                    key={skill}
+                    className="bg-white px-4 py-3 rounded-xl border border-gray-100 
+                             shadow-sm hover:border-green-200 transition-colors"
+                  >
+                    <span className="text-gray-800 font-medium">{skill}</span>
+                  </div>
+                ))}
+              </div>
 
-            {/* Resume Button */}
-            <div className="text-center lg:text-left">
+              {/* Resume Button */}
               <a
                 href="https://drive.google.com/file/d/1EFGOya6gsVi4o1Wp1IiY4gbEcc8ZuG5d/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-green-600 
-                         text-white rounded-lg text-sm sm:text-base font-medium 
-                         shadow-sm hover:bg-green-700"
+                className="inline-flex items-center px-8 py-4 bg-gray-900 text-white 
+                         rounded-xl text-lg font-semibold transition-all
+                         hover:bg-green-600 hover:shadow-lg"
               >
                 View Resume
                 <svg
-                  className="ml-2 w-5 h-5"
+                  className="ml-3 w-6 h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

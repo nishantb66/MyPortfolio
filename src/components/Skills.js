@@ -46,47 +46,56 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="pt-20 sm:pt-24 md:pt-28 py-8 sm:py-12 md:py-16 bg-white"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
-            Technical <span className="text-green-600">Expertise</span>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h4 className="text-green-600 font-semibold mb-2">My Expertise</h4>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Technical Skills
           </h2>
+          <p className="text-lg text-gray-600">
+            Comprehensive toolkit for modern software development
+          </p>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl p-6 sm:p-8 shadow-md
-                       border border-green-100"
+              className="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] 
+                       border-2 border-transparent hover:border-green-50"
             >
-              <div className="flex items-center mb-6">
-                <span className="text-2xl sm:text-3xl text-green-600 mr-3">
-                  {category.icon}
-                </span>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800">
+              {/* Category Header */}
+              <div className="flex items-center gap-4 mb-8">
+                <div
+                  className="flex items-center justify-center w-12 h-12 
+                              rounded-xl bg-green-50 text-green-600"
+                >
+                  <span className="text-xl">{category.icon}</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">
                   {category.title}
                 </h3>
               </div>
 
-              <div className="space-y-4">
+              {/* Skills List */}
+              <div className="space-y-6">
                 {category.skills.map((skill, skillIdx) => (
-                  <div key={skillIdx} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 font-medium text-sm sm:text-base">
+                  <div key={skillIdx}>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-800 font-medium">
                         {skill.name}
                       </span>
-                      <span className="text-green-600 text-sm font-medium">
+                      <span className="text-green-600 font-semibold text-sm">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full h-2 bg-green-50 rounded-full">
+                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-green-600 rounded-full"
+                        className="h-full rounded-full bg-gradient-to-r from-green-500 to-green-600"
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>
