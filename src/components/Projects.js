@@ -5,6 +5,15 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Enterprise Portal",
+      description:
+        "A robust enterprise-grade web application designed for employees, offering multiple full-scale features. Launched as an MVP with a focus on scalability and enterprise-level integrations.",
+      isNew: true,
+      liveLink: "https://bpcl-portal.vercel.app/",
+      tags: ["MERN + NextJS", "TailwindCSS"],
+    },
+    {
+      id: 2,
       title: "simpleArticle",
       description: "A platform to write, read, collaborate and much more!",
       isNew: true,
@@ -12,7 +21,7 @@ const Projects = () => {
       tags: ["MERN + NextJS", "TailwindCSS", "Python", "AI"],
     },
     {
-      id: 2,
+      id: 3,
       title: "SocialHub",
       description:
         "A modern social media web application with real-time features.",
@@ -20,15 +29,6 @@ const Projects = () => {
       demo: "https://drive.google.com/file/d/1xndaILrgQ3BtqdvE5t9X28k-nfGYL1hf/view",
       liveLink: "https://socialhub-frontend.vercel.app/register",
       tags: ["MERN Stack", "SocketIO", "TailwindCSS"],
-    },
-    {
-      id: 3,
-      title: "JobTracker",
-      description:
-        "A web-based tool to manage and track your Job Applications seemlessly, integrated with various features",
-      github: "https://github.com/nishantb66/JobTracker",
-      demo: "https://drive.google.com/file/d/1-OjFLlZSk9ECb0O-3gXm2FjRrq9iqoAJ/view?usp=sharing",
-      tags: ["MERN", "CRUD", "TailwindCSS"],
     },
     {
       id: 4,
@@ -70,8 +70,8 @@ const Projects = () => {
             Featured <span className="text-green-600">Projects</span>
           </h2>
           <p className="mt-3 text-base sm:text-lg text-gray-600">
-            Exploring the intersection of design and technology through
-            innovative solutions
+            Exploring the intersection of technology and design through
+            innovative 24x7 solutions
           </p>
         </div>
 

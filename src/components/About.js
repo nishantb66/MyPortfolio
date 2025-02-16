@@ -34,7 +34,7 @@ const About = () => {
               <div className="space-y-6 text-gray-600 mb-12">
                 <p className="text-lg leading-relaxed">
                   Hello! I'm a Full Stack Developer and Data Analyst passionate
-                  about building digital solutions that make a difference. I
+                  about building digital solutions that make a difference. I am
                   specialize in creating modern, responsive applications that
                   combine aesthetic design with robust functionality.
                 </p>
