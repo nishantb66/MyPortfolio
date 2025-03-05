@@ -10,7 +10,7 @@ const Projects = () => {
         "A robust enterprise-grade web application designed for employees, offering multiple full-scale features. Launched as an MVP with a focus on scalability and enterprise-level integrations.",
       isNew: true,
       liveLink: "https://bpcl-portal.vercel.app/",
-      tags: ["MERN + NextJS", "TailwindCSS"],
+      tags: ["MERN + NextJS", "TailwindCSS", "Kafka", "Docker"],
     },
     {
       id: 2,
@@ -34,6 +34,7 @@ const Projects = () => {
       id: 4,
       title: "TextMind (Capstone project)",
       description: "An AI tool and one-stop-shop for all textual data analysis",
+      isNew: true,
       github: "https://github.com/nishantb66/TextMind",
       demo: "https://drive.google.com/file/d/16EkHPQwihVbBWwiYwN8WEOH4kCIXLgav/view?usp=sharing",
       tags: ["Python", "Flask", "TailwindCSS", "NLP", "HuggingFace"],
@@ -43,6 +44,7 @@ const Projects = () => {
       title: "InfoAssist Bot",
       description:
         "An offline AI chatbot with customisable database system, continuous user feedback system and admin panel.",
+      isNew: true,
       github: "https://github.com/nishantb66/InfoAssist-all-MiniLM-L6-v2-model",
       demo: "https://drive.google.com/file/d/1a_hH17_h1gIY-QtpCy1H-ojdLo4mSJF3/view?usp=sharing",
       tags: ["Python", "Flask", "Javascript", "NLP", "HuggingFace"],
@@ -88,10 +90,10 @@ const Projects = () => {
                   {project.title}
                   {project.isNew && (
                     <span
-                      className="ml-2 px-3 py-1 text-xs bg-green-50 
-                                   text-green-700 rounded-full"
+                      className="ml-2 px-3 py-1 text-sm bg-yellow-50 
+                                   text-yellow-600 rounded-full"
                     >
-                      New
+                      AI
                     </span>
                   )}
                 </h3>
