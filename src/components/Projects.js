@@ -9,8 +9,8 @@ const Projects = () => {
       description:
         "A robust enterprise-grade web application designed for employees, offering multiple full-scale features. Launched as an MVP with a focus on scalability and enterprise-level integrations.",
       isNew: true,
-      liveLink: "https://bpcl-portal.vercel.app/",
-      tags: ["MERN + NextJS", "TailwindCSS", "Kafka", "Docker"],
+      liveLink: "https://portallandingpage.vercel.app",
+      tags: ["MERN + NextJS", "TailwindCSS", "Kafka", "Docker", "AWS", "Python", "Flask"],
     },
     {
       id: 2,
