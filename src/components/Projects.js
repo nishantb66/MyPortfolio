@@ -5,12 +5,10 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Enterprise Portal",
+      title: "SaaS Product",
       description:
-        "A robust enterprise-grade web application designed for employees, offering multiple full-scale features. Launched as an MVP with a focus on scalability and enterprise-level integrations.",
+        "Building",
       isNew: true,
-      liveLink: "https://portallandingpage.vercel.app",
-      tags: ["MERN + NextJS", "TailwindCSS", "Kafka", "Docker", "AWS", "Python", "Flask"],
     },
     {
       id: 2,
