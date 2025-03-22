@@ -9,6 +9,8 @@ const Projects = () => {
       description:
         "Building",
       isNew: true,
+      liveLink: "#",
+      tags: ["Full Stack", "Cloud", "Artificial Intelligence", "Kafka"],
     },
     {
       id: 2,
